@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-title>
+      Chores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+
+    <ion-item-group *ngFor="let child of children">
+      <ion-item-divider mode="ios" color="secondary">
+        <ion-thumbnail class="child-photo" slot="start" *ngIf="child.photo_url">
+          <ion-img [src]="child.photo_url"></ion-img>
+        </ion-thumbnail>
+
+        <ion-label class="child-label">{{child.name}}</ion-label>
+
+        <ion-button slot="end" [routerLink]="['/tabs/chores/' + child.id + '/new']">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let chore of child.chores">
+        <ion-spinner *ngIf="chore.isUpdating" slot="start" name="circles"></ion-spinner>
+        <ion-checkbox *ngIf="!chore.isUpdating" slot="start" [(ngModel)]="chore.completeInUi" (ionChange)="toggleChoreComplete(chore)"></ion-checkbox>
+        <ion-thumbnail slot="start" *ngIf="chore.task.thumbnail_url">
+          <ion-img [src]="chore.task.thumbnail_url"></ion-img>
+        </ion-thumbnail>
+        <ion-label>{{chore.task.name}}</ion-label>
+      </ion-item>
+
+    </ion-item-group>
+  </ion-list>
+</ion-content>

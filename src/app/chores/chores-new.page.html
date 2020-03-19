@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-button slot="start" [routerLink]="['/tabs/chores']">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-title *ngIf="child">
+      Chores for {{child.name}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let taskForChild of tasksForChild">
+      <ion-spinner *ngIf="false" slot="start" name="circles"></ion-spinner>
+      <ion-toggle *ngIf="true" slot="start" [(ngModel)]="taskForChild.enabled" (click)="toggleTask(taskForChild)"></ion-toggle>
+      <ion-thumbnail slot="start" *ngIf="taskForChild.task.thumbnail_url">
+        <ion-img [src]="taskForChild.task.thumbnail_url"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{taskForChild.task.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

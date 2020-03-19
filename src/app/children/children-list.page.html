@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-button slot="end" [routerLink]="['/tabs/children/new']">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+
+    <ion-title>
+      Children
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let child of children">
+      <ion-item>
+        <ion-thumbnail slot="start" *ngIf="child.photo_url">
+          <ion-img [src]="child.photo_url"></ion-img>
+        </ion-thumbnail>
+        <ion-label>{{child.name}}</ion-label>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable (click)="deleteChild(child)">
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

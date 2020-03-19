@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-button slot="start" [routerLink]="['/tabs/tasks']">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-title>
+      Edit Task
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <form (ngSubmit)="updateTask()" *ngIf="task">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="task.name" name="taskName"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" block>Update Task</ion-button>
+  </form>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-button slot="start" [routerLink]="['/tabs/children']">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-title>
+      Add Child
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <form (ngSubmit)="postNewChild()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="child.name" name="childName"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" block>Add Child</ion-button>
+  </form>
+
+</ion-content>
